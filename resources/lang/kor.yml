@@ -1,7 +1,7 @@
 ---
 prefix: "[WriteCheck] "
 
-check-name: "${%0} check"
+check-name: "{%0}원 수표"
 check-use: "{%0}원 수표를 사용했습니다. 소유금 : {%1}원"
 check-help: "{%0}원 수표입니다. 길게 누르거나 우클릭하여 사용하세요"
 

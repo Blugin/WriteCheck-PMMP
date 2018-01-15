@@ -17,6 +17,9 @@ class PlayerEventListener implements Listener{
     /** @var Plugin */
     private $owner = null;
 
+    /** @var int[] */
+    private $touched = [];
+
     public function __construct(){
         $this->owner = Plugin::getInstance();
     }
@@ -31,7 +34,11 @@ class PlayerEventListener implements Listener{
                 $amount = $item->getNamedTag()->getTagValue('whitecheck-amount', IntTag::class, -1);
                 if ($amount !== -1) {
                     if ($event->getAction() === PlayerInteractEvent::LEFT_CLICK_BLOCK) {
-                        $player->sendMessage(Plugin::$prefix . Translation::translate('check-help', $amount));
+                        $playerName = $player->getLowerCaseName();
+                        if (!isset($this->touched[$playerName]) || $this->touched[$playerName] < time()) {
+                            $player->sendMessage(Plugin::$prefix . Translation::translate('check-help', $amount));
+                            $this->touched[$playerName] = time() + 3;
+                        }
                     } else {
                         $item->count = 1;
                         $inventory->removeItem($item);

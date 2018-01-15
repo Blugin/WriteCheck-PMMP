@@ -37,6 +37,7 @@ class PlayerEventListener implements Listener{
                         $playerName = $player->getLowerCaseName();
                         if (!isset($this->touched[$playerName]) || $this->touched[$playerName] < time()) {
                             $player->sendMessage(Plugin::$prefix . Translation::translate('check-help', $amount));
+                            $item->setCustomName(Translation::translate('check-name', $amount));
                             $this->touched[$playerName] = time() + 3;
                         }
                     } else {

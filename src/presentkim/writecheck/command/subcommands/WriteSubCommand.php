@@ -28,7 +28,6 @@ class WriteSubCommand extends SubCommand{
                 $amount = (int) $args[0];
                 $count = max(isset($args[1]) && is_numeric($args[1]) ? (int) $args[1] : 1, 1);
 
-
                 $economyApi = EconomyAPI::getInstance();
                 if (($money = $economyApi->myMoney($sender)) < $amount * $count) {
                     $sender->sendMessage(Plugin::$prefix . $this->translate('failure', $money));

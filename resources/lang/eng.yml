@@ -13,7 +13,7 @@ command-wcheck@description: "Main command of WriteCheck"
 command-wcheck@aliases: ["wc"]
 
 command-wcheck-write: "write"
-command-wcheck-write@usage: "/VChest Write <amount> <count>"
+command-wcheck-write@usage: "/VChest Write <amount> [count]"
 command-wcheck-write@success: "You wrote {%1} checks for ${%0}"
 command-wcheck-write@failure: "You don't have enough money. You have : ${%0}"
 command-wcheck-write@aliases: ["w"]

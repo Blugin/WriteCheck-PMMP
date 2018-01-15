@@ -1,0 +1,26 @@
+---
+name:                   WriteCheck
+main:                   presentkim\writecheck\WriteCheckMain
+version:                1.0.0
+api:                    [3.0.0, 3.0.0-ALPHA10]
+author:                 PresentKim
+website:                https://github.com/PMMPPlugin/WriteCheck
+
+permissions:
+  wcheck.cmd:
+    description:        WriteCheck command
+    default:            true
+    children:
+      wcheck.cmd.write:
+        description:    WriteCheck command - write
+        default:        true
+      wcheck.cmd.lang:
+        description:    WriteCheck command - lang
+        default:        op
+      wcheck.cmd.reload:
+        description:    WriteCheck command - reload
+        default:        op
+      wcheck.cmd.save:
+        description:    WriteCheck command - save
+        default:        op
+...

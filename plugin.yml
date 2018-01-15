@@ -6,6 +6,8 @@ api:                    [3.0.0, 3.0.0-ALPHA10]
 author:                 PresentKim
 website:                https://github.com/PMMPPlugin/WriteCheck
 
+depend:                 [EconomyAPI]
+
 permissions:
   wcheck.cmd:
     description:        WriteCheck command

@@ -23,9 +23,14 @@ class LangSubCommand extends SubCommand{
         if (isset($args[0]) && is_string($args[0]) && ($args[0] = strtolower(trim($args[0])))) {
             $resource = $this->plugin->getResource("lang/$args[0].yml");
             if (is_resource($resource)) {
-                @mkdir($this->plugin->getDataFolder());
+                $dataFolder = $this->plugin->getDataFolder();
+                if (!file_exists($dataFolder)) {
+                    mkdir($dataFolder, 0777, true);
+                }
+
                 Translation::loadFromResource($resource);
                 $this->plugin->reloadCommand();
+
                 $sender->sendMessage(Plugin::$prefix . $this->translate('success', $args[0]));
             } else {
                 $sender->sendMessage(Plugin::$prefix . $this->translate('failure', $args[0]));

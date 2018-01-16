@@ -30,13 +30,12 @@ class WriteCheckMain extends PluginBase{
         if (self::$instance === null) {
             self::$instance = $this;
             $this->getServer()->getLoader()->loadClass('presentkim\writecheck\util\Utils');
+            Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
 
             $this->command = new PoolCommand($this, 'wcheck');
             $this->command->createSubCommand(WriteSubCommand::class);
             $this->command->createSubCommand(LangSubCommand::class);
             $this->command->createSubCommand(ReloadSubCommand::class);
-
-            Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
         }
     }
 

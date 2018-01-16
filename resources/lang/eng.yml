@@ -9,23 +9,24 @@ command-generic-failure@in-game: "Available in game only"
 command-generic-failure@permission : "You do not have permission to use this command"
 
 command-wcheck: "wcheck"
-command-wcheck@usage: /VChest <write | lang | reload | save>
+command-wcheck@usage: /wcheck <write | lang | reload>
 command-wcheck@description: "Main command of WriteCheck"
 command-wcheck@aliases: ["wc"]
 
 command-wcheck-write: "write"
-command-wcheck-write@usage: "/VChest Write <amount> [count]"
+command-wcheck-write@usage: "/wcheck Write <amount> [count]"
 command-wcheck-write@success: "You wrote {%1} checks for ${%0}"
 command-wcheck-write@failure: "You don't have enough money. You have : ${%0}"
 command-wcheck-write@aliases: ["w"]
 
 command-wcheck-lang: "lang"
-command-wcheck-lang@usage: "/VChest Lang <language prefix>"
+command-wcheck-lang@usage: "/wcheck Lang <language prefix>"
 command-wcheck-lang@success: "{%0} language file was loaded"
 command-wcheck-lang@failure: "{%0} is invalid language prefix"
 command-wcheck-lang@aliases: ["language"]
 
 command-wcheck-reload: "reload"
+command-wcheck-reload@usage: "/wcheck Reload"
 command-wcheck-reload@success: "All data was reloaded"
 command-wcheck-reload@aliases: ["rl"]
 ...

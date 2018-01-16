@@ -6,10 +6,10 @@ check-use: "{%0}원 수표를 사용했습니다. 소유금 : {%1}원"
 check-help: "{%0}원 수표입니다. 길게 누르거나 우클릭하여 사용하세요"
 
 command-generic-failure@in-game: "게임 내에서만 사용할 수 있습니다"
-command-generic-failure@permission : "이 명령을 사용할 수 있는 권한이 없습니다"
+command-generic-failure@permission: "이 명령을 사용할 수 있는 권한이 없습니다"
 
 command-wcheck: "wcheck"
-command-wcheck@usage: /wcheck <write | lang | reload>
+command-wcheck@usage: "/wcheck <write | lang | reload>"
 command-wcheck@description: "WriteCheck의 메인 커맨드"
 command-wcheck@aliases: ["wc"]
 

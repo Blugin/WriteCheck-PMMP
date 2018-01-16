@@ -28,30 +28,20 @@ class WriteCheckMain extends PluginBase{
 
     public function onLoad(){
         if (self::$instance === null) {
-            // register instance
             self::$instance = $this;
+            $this->getServer()->getLoader()->loadClass('presentkim\writecheck\util\Utils');
 
-            // create wcheck PoolCommand
             $this->command = new PoolCommand($this, 'wcheck');
             $this->command->createSubCommand(WriteSubCommand::class);
             $this->command->createSubCommand(LangSubCommand::class);
             $this->command->createSubCommand(ReloadSubCommand::class);
 
-            // load utils
-            $this->getServer()->getLoader()->loadClass('presentkim\writecheck\util\Utils');
-
-            // load default lang
             Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
         }
     }
 
-    /**
-     *
-     */
     public function onEnable(){
         $this->load();
-
-        // register event listeners
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
     }
 
@@ -61,7 +51,6 @@ class WriteCheckMain extends PluginBase{
             mkdir($dataFolder, 0777, true);
         }
 
-        // load lang
         $langfilename = $dataFolder . 'lang.yml';
         if (!file_exists($langfilename)) {
             $resource = $this->getResource('lang/eng.yml');
@@ -72,10 +61,7 @@ class WriteCheckMain extends PluginBase{
             Translation::load($langfilename);
         }
 
-        // register prefix
         self::$prefix = Translation::translate('prefix');
-
-        // update translation and register command
         $this->reloadCommand();
     }
 

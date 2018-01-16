@@ -69,8 +69,10 @@ class WriteCheckMain extends PluginBase{
         // load lang
         $langfilename = $dataFolder . 'lang.yml';
         if (!file_exists($langfilename)) {
-            Translation::loadFromResource($this->getResource('lang/eng.yml'));
-            Translation::save($langfilename);
+            $resource = $this->getResource('lang/eng.yml');
+            Translation::loadFromResource($resource);
+            stream_copy_to_stream($resource, $fp = fopen("{$dataFolder}lang.yml", "wb"));
+            fclose($fp);
         } else {
             Translation::load($langfilename);
         }

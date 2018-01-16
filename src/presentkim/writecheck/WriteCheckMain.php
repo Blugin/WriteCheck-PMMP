@@ -19,7 +19,7 @@ class WriteCheckMain extends PluginBase{
     public static $prefix = '';
 
     /** @var PoolCommand */
-    private $command;
+    private $command = null;
 
     /** @return self */
     public static function getInstance(){
@@ -31,11 +31,6 @@ class WriteCheckMain extends PluginBase{
             self::$instance = $this;
             $this->getServer()->getLoader()->loadClass('presentkim\writecheck\util\Utils');
             Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
-
-            $this->command = new PoolCommand($this, 'wcheck');
-            $this->command->createSubCommand(WriteSubCommand::class);
-            $this->command->createSubCommand(LangSubCommand::class);
-            $this->command->createSubCommand(ReloadSubCommand::class);
         }
     }
 
@@ -65,6 +60,12 @@ class WriteCheckMain extends PluginBase{
     }
 
     public function reloadCommand(){
+        if ($this->command == null) {
+            $this->command = new PoolCommand($this, 'wcheck');
+            $this->command->createSubCommand(WriteSubCommand::class);
+            $this->command->createSubCommand(LangSubCommand::class);
+            $this->command->createSubCommand(ReloadSubCommand::class);
+        }
         $this->command->updateTranslation();
         $this->command->updateSudCommandTranslation();
         if ($this->command->isRegistered()) {

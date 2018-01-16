@@ -40,6 +40,9 @@ class WriteCheckMain extends PluginBase{
 
             // load utils
             $this->getServer()->getLoader()->loadClass('presentkim\writecheck\util\Utils');
+
+            // load default lang
+            Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
         }
     }
 

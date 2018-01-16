@@ -28,8 +28,4 @@ command-wcheck-lang@aliases: ["language"]
 command-wcheck-reload: "reload"
 command-wcheck-reload@success: "All data was reloaded"
 command-wcheck-reload@aliases: ["rl"]
-
-command-wcheck-save: "save"
-command-wcheck-save@success: "All data was saved"
-command-wcheck-save@aliases: ["sv"]
 ...

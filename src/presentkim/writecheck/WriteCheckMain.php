@@ -7,7 +7,7 @@ use presentkim\writecheck\listener\PlayerEventListener;
 use presentkim\writecheck\util\Translation;
 use presentkim\writecheck\command\PoolCommand;
 use presentkim\writecheck\command\subcommands\{
-  WriteSubCommand, LangSubCommand, ReloadSubCommand, SaveSubCommand
+  WriteSubCommand, LangSubCommand, ReloadSubCommand
 };
 
 class WriteCheckMain extends PluginBase{
@@ -36,7 +36,6 @@ class WriteCheckMain extends PluginBase{
             $this->command->createSubCommand(WriteSubCommand::class);
             $this->command->createSubCommand(LangSubCommand::class);
             $this->command->createSubCommand(ReloadSubCommand::class);
-            $this->command->createSubCommand(SaveSubCommand::class);
 
             // load utils
             $this->getServer()->getLoader()->loadClass('presentkim\writecheck\util\Utils');
@@ -54,10 +53,6 @@ class WriteCheckMain extends PluginBase{
 
         // register event listeners
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
-    }
-
-    public function onDisable(){
-        $this->save();
     }
 
     public function load(){
@@ -91,15 +86,5 @@ class WriteCheckMain extends PluginBase{
             $this->getServer()->getCommandMap()->unregister($this->command);
         }
         $this->getServer()->getCommandMap()->register(strtolower($this->getName()), $this->command);
-    }
-
-    public function save(){
-        $dataFolder = $this->getDataFolder();
-        if (!file_exists($dataFolder)) {
-            mkdir($dataFolder, 0777, true);
-        }
-
-        // save lang
-        Translation::save("{$dataFolder}lang.yml");
     }
 }

@@ -22,7 +22,4 @@ permissions:
       wcheck.cmd.reload:
         description:    WriteCheck command - reload
         default:        op
-      wcheck.cmd.save:
-        description:    WriteCheck command - save
-        default:        op
 ...

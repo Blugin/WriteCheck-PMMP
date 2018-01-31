@@ -3,7 +3,7 @@
 namespace presentkim\writecheck\command\subcommands;
 
 use pocketmine\{
-  Player, command\CommandSender, item\Item, nbt\tag\IntTag,
+  Player, command\CommandSender, item\Item, nbt\tag\IntTag
 };
 use onebone\economyapi\EconomyAPI;
 use presentkim\writecheck\{

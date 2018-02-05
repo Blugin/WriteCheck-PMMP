@@ -57,3 +57,5 @@ Main command : `/writecheck <write | lang | reload>`
 - \[Changed\] Show only subcommands that sender have permission to use
 - \[Changed\] Add return type hint
 - \[Changed\] Rename main class to WriteCheck
+- \[Added\] Add PluginCommand getter and setter
+- \[Added\] Add getters and setters to SubCommand

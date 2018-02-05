@@ -6,8 +6,8 @@ namespace presentkim\writecheck\command;
 use pocketmine\command\{
   Command, PluginCommand, CommandExecutor, CommandSender, ConsoleCommandSender
 };
-use presentkim\writecheck\util\Translation;
 use presentkim\writecheck\WriteCheck as Plugin;
+use presentkim\writecheck\util\Translation;
 
 class PoolCommand extends PluginCommand implements CommandExecutor{
 

@@ -3,8 +3,9 @@
 namespace presentkim\writecheck\command\subcommands;
 
 use pocketmine\command\CommandSender;
-use presentkim\writecheck\{
-  command\PoolCommand, WriteCheck as Plugin, command\SubCommand
+use presentkim\writecheck\WriteCheck as Plugin;
+use presentkim\writecheck\command\{
+  PoolCommand, SubCommand
 };
 
 class ReloadSubCommand extends SubCommand{

@@ -2,15 +2,13 @@
 
 namespace presentkim\writecheck\listener;
 
-use pocketmine\event\{
-  Listener, player\PlayerInteractEvent
-};
+use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\item\Item;
 use pocketmine\nbt\tag\IntTag;
 use onebone\economyapi\EconomyAPI;
-use presentkim\writecheck\{
-  WriteCheck as Plugin, util\Translation
-};
+use presentkim\writecheck\WriteCheck as Plugin;
+use presentkim\writecheck\util\Translation;
 
 class PlayerEventListener implements Listener{
 

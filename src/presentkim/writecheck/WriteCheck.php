@@ -3,12 +3,12 @@
 namespace presentkim\writecheck;
 
 use pocketmine\plugin\PluginBase;
-use presentkim\writecheck\listener\PlayerEventListener;
-use presentkim\writecheck\util\Translation;
 use presentkim\writecheck\command\PoolCommand;
 use presentkim\writecheck\command\subcommands\{
   WriteSubCommand, LangSubCommand, ReloadSubCommand
 };
+use presentkim\writecheck\listener\PlayerEventListener;
+use presentkim\writecheck\util\Translation;
 
 class WriteCheck extends PluginBase{
 

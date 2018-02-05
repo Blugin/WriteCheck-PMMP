@@ -2,13 +2,16 @@
 
 namespace presentkim\writecheck\command\subcommands;
 
-use pocketmine\{
-  Player, command\CommandSender, item\Item, nbt\tag\IntTag
-};
+use pocketmine\Player;
+use pocketmine\command\CommandSender;
+use pocketmine\item\Item;
+use pocketmine\nbt\tag\IntTag;
 use onebone\economyapi\EconomyAPI;
-use presentkim\writecheck\{
-  command\PoolCommand, WriteCheck as Plugin, util\Translation, command\SubCommand
+use presentkim\writecheck\WriteCheck as Plugin;
+use presentkim\writecheck\command\{
+  PoolCommand, SubCommand
 };
+use presentkim\writecheck\util\Translation;
 
 class WriteSubCommand extends SubCommand{
 

@@ -3,8 +3,9 @@
 namespace presentkim\writecheck\command;
 
 use pocketmine\command\CommandSender;
-use presentkim\writecheck\{
-  util\Utils, WriteCheck as Plugin, util\Translation
+use presentkim\writecheck\WriteCheck as Plugin;
+use presentkim\writecheck\util\{
+  Translation, Utils
 };
 
 abstract class SubCommand{

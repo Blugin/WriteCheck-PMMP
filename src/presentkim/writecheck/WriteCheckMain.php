@@ -29,7 +29,6 @@ class WriteCheckMain extends PluginBase{
     public function onLoad(){
         if (self::$instance === null) {
             self::$instance = $this;
-            $this->getServer()->getLoader()->loadClass('presentkim\writecheck\util\Utils');
             Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
         }
     }

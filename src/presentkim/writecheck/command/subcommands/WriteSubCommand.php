@@ -22,7 +22,7 @@ class WriteSubCommand extends SubCommand{
      *
      * @return bool
      */
-    public function onCommand(CommandSender $sender, array $args){
+    public function onCommand(CommandSender $sender, array $args) : bool{
         if (isset($args[0]) && is_numeric($args[0])) {
             if ($sender instanceof Player) {
                 $amount = (int) $args[0];

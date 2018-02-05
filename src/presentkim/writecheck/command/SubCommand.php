@@ -50,7 +50,7 @@ abstract class SubCommand{
      * @param CommandSender $sender
      * @param String[]      $args
      */
-    public function execute(CommandSender $sender, array $args){
+    public function execute(CommandSender $sender, array $args) : void{
         if (!$this->checkPermission($sender)) {
             $sender->sendMessage(Plugin::$prefix . Translation::translate('command-generic-failure@permission'));
         } elseif (!$this->onCommand($sender, $args)) {
@@ -64,14 +64,14 @@ abstract class SubCommand{
      *
      * @return bool
      */
-    abstract public function onCommand(CommandSender $sender, array $args);
+    abstract public function onCommand(CommandSender $sender, array $args) : bool;
 
     /**
      * @param CommandSender $target
      *
      * @return bool
      */
-    public function checkPermission(CommandSender $target){
+    public function checkPermission(CommandSender $target) : bool{
         if ($this->permission === null) {
             return true;
         } else {
@@ -85,7 +85,7 @@ abstract class SubCommand{
      *
      * @return string
      */
-    public function translate(string $tag, string ...$params){
+    public function translate(string $tag, string ...$params) : string{
         return Translation::translate("{$this->strId}@{$tag}", ...$params);
     }
 
@@ -94,11 +94,11 @@ abstract class SubCommand{
      *
      * @return bool
      */
-    public function checkLabel(string $label){
+    public function checkLabel(string $label) : bool{
         return strcasecmp($label, $this->label) === 0 || $this->aliases && Utils::in_arrayi($label, $this->aliases);
     }
 
-    public function updateTranslation(){
+    public function updateTranslation() : void{
         $this->label = Translation::translate($this->strId);
         $this->aliases = Translation::getArray("{$this->strId}@aliases");
         $this->usage = $this->translate('usage');

@@ -22,23 +22,23 @@ class WriteCheckMain extends PluginBase{
     private $command = null;
 
     /** @return self */
-    public static function getInstance(){
+    public static function getInstance() : self{
         return self::$instance;
     }
 
-    public function onLoad(){
+    public function onLoad() : void{
         if (self::$instance === null) {
             self::$instance = $this;
             Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
         }
     }
 
-    public function onEnable(){
+    public function onEnable() : void{
         $this->load();
         $this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
     }
 
-    public function load(){
+    public function load() : void{
         $dataFolder = $this->getDataFolder();
         if (!file_exists($dataFolder)) {
             mkdir($dataFolder, 0777, true);
@@ -58,7 +58,7 @@ class WriteCheckMain extends PluginBase{
         $this->reloadCommand();
     }
 
-    public function reloadCommand(){
+    public function reloadCommand() : void{
         if ($this->command == null) {
             $this->command = new PoolCommand($this, 'wcheck');
             $this->command->createSubCommand(WriteSubCommand::class);

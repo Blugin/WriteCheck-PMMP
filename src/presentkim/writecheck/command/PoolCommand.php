@@ -7,7 +7,7 @@ use pocketmine\command\{
   Command, PluginCommand, CommandExecutor, CommandSender, ConsoleCommandSender
 };
 use presentkim\writecheck\util\Translation;
-use presentkim\writecheck\WriteCheckMain as Plugin;
+use presentkim\writecheck\WriteCheck as Plugin;
 
 class PoolCommand extends PluginCommand implements CommandExecutor{
 

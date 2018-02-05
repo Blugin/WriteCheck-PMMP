@@ -7,7 +7,7 @@ use pocketmine\{
 };
 use onebone\economyapi\EconomyAPI;
 use presentkim\writecheck\{
-  command\PoolCommand, WriteCheckMain as Plugin, util\Translation, command\SubCommand
+  command\PoolCommand, WriteCheck as Plugin, util\Translation, command\SubCommand
 };
 
 class WriteSubCommand extends SubCommand{

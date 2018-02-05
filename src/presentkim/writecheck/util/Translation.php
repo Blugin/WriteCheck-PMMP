@@ -2,7 +2,7 @@
 
 namespace presentkim\writecheck\util;
 
-use presentkim\writecheck\WriteCheckMain as Plugin;
+use presentkim\writecheck\WriteCheck as Plugin;
 
 class Translation{
 

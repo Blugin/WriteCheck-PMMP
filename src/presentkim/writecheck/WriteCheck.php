@@ -10,7 +10,7 @@ use presentkim\writecheck\command\subcommands\{
   WriteSubCommand, LangSubCommand, ReloadSubCommand
 };
 
-class WriteCheckMain extends PluginBase{
+class WriteCheck extends PluginBase{
 
     /** @var self */
     private static $instance = null;

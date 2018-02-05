@@ -4,7 +4,7 @@ namespace presentkim\writecheck\command\subcommands;
 
 use pocketmine\command\CommandSender;
 use presentkim\writecheck\{
-  command\PoolCommand, WriteCheckMain as Plugin, util\Translation, command\SubCommand
+  command\PoolCommand, WriteCheck as Plugin, util\Translation, command\SubCommand
 };
 
 class LangSubCommand extends SubCommand{

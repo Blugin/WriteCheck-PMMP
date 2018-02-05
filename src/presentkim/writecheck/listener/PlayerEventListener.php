@@ -9,7 +9,7 @@ use pocketmine\item\Item;
 use pocketmine\nbt\tag\IntTag;
 use onebone\economyapi\EconomyAPI;
 use presentkim\writecheck\{
-  WriteCheckMain as Plugin, util\Translation
+  WriteCheck as Plugin, util\Translation
 };
 
 class PlayerEventListener implements Listener{

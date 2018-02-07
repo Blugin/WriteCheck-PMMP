@@ -2,13 +2,17 @@
 
 namespace presentkim\writecheck;
 
+use pocketmine\item\Item;
+use pocketmine\nbt\tag\IntTag;
 use pocketmine\plugin\PluginBase;
 use presentkim\writecheck\command\PoolCommand;
 use presentkim\writecheck\command\subcommands\{
   WriteSubCommand, LangSubCommand, ReloadSubCommand
 };
 use presentkim\writecheck\listener\PlayerEventListener;
-use presentkim\writecheck\util\Translation;
+use presentkim\writecheck\util\{
+  Translation, Utils
+};
 
 class WriteCheck extends PluginBase{
 
@@ -85,5 +89,23 @@ class WriteCheck extends PluginBase{
     /** @param PoolCommand $command */
     public function setCommand(PoolCommand $command) : void{
         $this->command = $command;
+    }
+
+    /**
+     * @param int $amount
+     * @param int $count
+     *
+     * @return Item
+     */
+    public function getCheck(int $amount, int $count = 1) : Item{
+        $paper = Item::get(Item::PAPER, 0xff, $count);
+        $paper->setNamedTagEntry(new IntTag('whitecheck-amount', $amount));
+        $paper->setCustomName(Translation::translate('check-name', $amount));
+        $lore = [];
+        foreach (Translation::getArray('check-lore') as $key => $line) {
+            $lore[] = strtr($line, Utils::listToPairs([$amount]));
+        }
+        $paper->setLore($lore);
+        return $paper;
     }
 }

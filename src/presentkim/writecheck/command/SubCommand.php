@@ -56,7 +56,7 @@ abstract class SubCommand{
         if (!$this->checkPermission($sender)) {
             $sender->sendMessage(Plugin::$prefix . Translation::translate('command-generic-failure@permission'));
         } elseif (!$this->onCommand($sender, $args)) {
-            $sender->sendMessage(Server::getInstance()->getLanguage()->translateString("commands.generic.usage", $this->usage));
+            $sender->sendMessage(Server::getInstance()->getLanguage()->translateString("commands.generic.usage", [$this->usage]));
         }
     }
 

@@ -46,6 +46,7 @@ class PlayerEventListener implements Listener{
                         $economyApi->addMoney($player, $amount);
                         $player->sendMessage(Plugin::$prefix . Translation::translate('check-use', $amount, $economyApi->myMoney($player)));
                     }
+                    $event->setCancelled(true);
                 }
             }
         }

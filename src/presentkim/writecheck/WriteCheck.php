@@ -108,4 +108,28 @@ class WriteCheck extends PluginBase{
         $paper->setLore($lore);
         return $paper;
     }
+
+    /**
+     * @param Item $item
+     *
+     * @return int|null
+     */
+    public function getAmount(Item $item) : ?int{
+        if ($item->getId() == Item::PAPER && $item->getDamage() === 0xff) {
+            $amount = $item->getNamedTag()->getTagValue('whitecheck-amount', IntTag::class, -1);
+            if ($amount !== -1) {
+                return $amount;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @param Item $item
+     *
+     * @return bool
+     */
+    public function isCheck(Item $item) : bool{
+        return $this->getAmount($item) !== null;
+    }
 }

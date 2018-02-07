@@ -59,3 +59,15 @@ Main command : `/writecheck <write | lang | reload>`
 - \[Changed\] Rename main class to WriteCheck
 - \[Added\] Add PluginCommand getter and setter
 - \[Added\] Add getters and setters to SubCommand
+  
+  
+---
+### v1.1.2 [![Source](https://img.shields.io/badge/source-v1.1.2-blue.png?label=source)](https://github.com/PMMPPlugin/WriteCheck/tree/v1.1.2) [![Release](https://img.shields.io/github/downloads/PMMPPlugin/WriteCheck/v1.1.2/total.png?label=download&colorB=1fadad)](https://github.com/PMMPPlugin/WriteCheck/releases/v1.1.2)
+- \[Added\] Add check item's lore data
+- \[Added\] WriteCheck : Add getCheck() and getAmount() and isCheck() method
+- \[Added\] WriteSubCommand : Add parameter to success message
+- \[Fixed\] Ignore when event was cancelled
+- \[Changed\] Cancel event when use check
+- \[Removed\] Remove set item's custom name line
+- \[Fixed\] Prevent ignore economyAPI failure
+- \[Changed\] SubCommand : Use BaseLang's command usage

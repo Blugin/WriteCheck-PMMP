@@ -4,16 +4,12 @@ namespace presentkim\writecheck\command\subcommands;
 
 use pocketmine\Player;
 use pocketmine\command\CommandSender;
-use pocketmine\item\Item;
-use pocketmine\nbt\tag\IntTag;
 use onebone\economyapi\EconomyAPI;
 use presentkim\writecheck\WriteCheck as Plugin;
 use presentkim\writecheck\command\{
   PoolCommand, SubCommand
 };
-use presentkim\writecheck\util\{
-  Translation, Utils
-};
+use presentkim\writecheck\util\Translation;
 
 class WriteSubCommand extends SubCommand{
 
@@ -38,16 +34,7 @@ class WriteSubCommand extends SubCommand{
                     $sender->sendMessage(Plugin::$prefix . $this->translate('failure', $money));
                 } else {
                     $economyApi->reduceMoney($sender, $amount * $count);
-
-                    $paper = Item::get(Item::PAPER, 0xff, $count);
-                    $paper->setNamedTagEntry(new IntTag('whitecheck-amount', $amount));
-                    $paper->setCustomName(Translation::translate('check-name', $amount));
-                    $lore = [];
-                    foreach (Translation::getArray('check-lore') as $key => $line) {
-                        $lore[] = strtr($line, Utils::listToPairs([$amount]));
-                    }
-                    $paper->setLore($lore);
-                    $sender->getInventory()->addItem($paper);
+                    $sender->getInventory()->addItem($this->plugin->getCheck($amount, $count));
 
                     $sender->sendMessage(Plugin::$prefix . $this->translate('success', $amount, $count));
                 }

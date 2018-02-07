@@ -71,3 +71,8 @@ Main command : `/writecheck <write | lang | reload>`
 - \[Removed\] Remove set item's custom name line
 - \[Fixed\] Prevent ignore economyAPI failure
 - \[Changed\] SubCommand : Use BaseLang's command usage
+  
+  
+---
+### v1.1.3 [![Source](https://img.shields.io/badge/source-v1.1.3-blue.png?label=source)](https://github.com/PMMPPlugin/WriteCheck/tree/v1.1.3) [![Release](https://img.shields.io/github/downloads/PMMPPlugin/WriteCheck/v1.1.3/total.png?label=download&colorB=1fadad)](https://github.com/PMMPPlugin/WriteCheck/releases/v1.1.3)
+- \[Fixed\] Fix string given error on send usage message

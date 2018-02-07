@@ -26,7 +26,7 @@ class PlayerEventListener implements Listener{
      * @param PlayerInteractEvent $event
      */
     public function onPlayerInteractEvent(PlayerInteractEvent $event) : void{
-        if ($event->getAction() === PlayerInteractEvent::LEFT_CLICK_BLOCK || $event->getAction() === PlayerInteractEvent::RIGHT_CLICK_AIR) {
+        if (!$event->isCancelled() && ($event->getAction() === PlayerInteractEvent::LEFT_CLICK_BLOCK || $event->getAction() === PlayerInteractEvent::RIGHT_CLICK_AIR)) {
             $player = $event->getPlayer();
             $inventory = $player->getInventory();
             $item = $inventory->getItemInHand();

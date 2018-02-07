@@ -30,13 +30,14 @@ class WriteSubCommand extends SubCommand{
                 $count = max(isset($args[1]) && is_numeric($args[1]) ? (int) $args[1] : 1, 1);
 
                 $economyApi = EconomyAPI::getInstance();
-                if (($money = $economyApi->myMoney($sender)) < $amount * $count) {
+                $price = $amount * $count;
+                if (($money = $economyApi->myMoney($sender)) < $price) {
                     $sender->sendMessage(Plugin::$prefix . $this->translate('failure', $money));
                 } else {
-                    $economyApi->reduceMoney($sender, $amount * $count);
+                    $economyApi->reduceMoney($sender, $price);
                     $sender->getInventory()->addItem($this->plugin->getCheck($amount, $count));
 
-                    $sender->sendMessage(Plugin::$prefix . $this->translate('success', $amount, $count));
+                    $sender->sendMessage(Plugin::$prefix . $this->translate('success', $amount, $count, $price, $money - $price));
                 }
             } else {
                 $sender->sendMessage(Plugin::$prefix . Translation::translate('command-generic-failure@in-game'));

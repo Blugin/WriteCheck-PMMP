@@ -18,7 +18,7 @@ command-wcheck@aliases: ["wc"]
 
 command-wcheck-write: "write"
 command-wcheck-write@usage: "/wcheck Write <금액> [갯수]"
-command-wcheck-write@success: "{%0}원 수표 {%1}장을 만들었습니다"
+command-wcheck-write@success: "${%2}원을 사용하여 {%0}원 수표 {%1}장을 만들었습니다. 소유금 : {%3}원"
 command-wcheck-write@failure: "돈이 부족합니다. 소유금 : {%0}원"
 command-wcheck-write@aliases: ["w"]
 

@@ -39,8 +39,8 @@ class PlayerEventListener implements Listener{
                         $player->sendMessage(Plugin::$prefix . Translation::translate('check-help', $amount));
                     }
                 } else {
-                    $item->count = 1;
-                    $inventory->removeItem($item);
+                    --$item->count;
+                    $inventory->setItemInHand($item);
                     $economyApi = EconomyAPI::getInstance();
                     $economyApi->addMoney($player, $amount);
 

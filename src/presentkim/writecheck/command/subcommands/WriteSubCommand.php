@@ -34,10 +34,14 @@ class WriteSubCommand extends SubCommand{
                 if (($money = $economyApi->myMoney($sender)) < $price) {
                     $sender->sendMessage(Plugin::$prefix . $this->translate('failure', $money));
                 } else {
-                    $economyApi->reduceMoney($sender, $price);
-                    $sender->getInventory()->addItem($this->plugin->getCheck($amount, $count));
+                    $return = $economyApi->reduceMoney($sender, $price, false, $this->plugin->getName());
+                    if ($return === EconomyAPI::RET_SUCCESS) {
+                        $sender->getInventory()->addItem($this->plugin->getCheck($amount, $count));
 
-                    $sender->sendMessage(Plugin::$prefix . $this->translate('success', $amount, $count, $price, $money - $price));
+                        $sender->sendMessage(Plugin::$prefix . $this->translate('success', $amount, $count, $price, $money - $price));
+                    } else {
+                        $sender->sendMessage(Plugin::$prefix . Translation::translate('economy-failure', $return));
+                    }
                 }
             } else {
                 $sender->sendMessage(Plugin::$prefix . Translation::translate('command-generic-failure@in-game'));

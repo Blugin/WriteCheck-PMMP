@@ -11,7 +11,9 @@ use presentkim\writecheck\WriteCheck as Plugin;
 use presentkim\writecheck\command\{
   PoolCommand, SubCommand
 };
-use presentkim\writecheck\util\Translation;
+use presentkim\writecheck\util\{
+  Translation, Utils
+};
 
 class WriteSubCommand extends SubCommand{
 
@@ -40,6 +42,11 @@ class WriteSubCommand extends SubCommand{
                     $paper = Item::get(Item::PAPER, 0xff, $count);
                     $paper->setNamedTagEntry(new IntTag('whitecheck-amount', $amount));
                     $paper->setCustomName(Translation::translate('check-name', $amount));
+                    $lore = [];
+                    foreach (Translation::getArray('check-lore') as $key => $line) {
+                        $lore[] = strtr($line, Utils::listToPairs([$amount]));
+                    }
+                    $paper->setLore($lore);
                     $sender->getInventory()->addItem($paper);
 
                     $sender->sendMessage(Plugin::$prefix . $this->translate('success', $amount, $count));

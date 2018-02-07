@@ -2,8 +2,10 @@
 prefix: "[WriteCheck] "
 
 check-name: "${%0} check"
-check-use: "Use the ${%0} check. You have : ${%1}"
+check-lore:
+  - "Long touch or right click to use to get ${%0}"
 check-help: "This is ${%0} check. Long touch or right click to use"
+check-use: "Use the ${%0} check. You have : ${%1}"
 
 command-generic-failure@in-game: "Available in game only"
 command-generic-failure@permission: "You do not have permission to use this command"

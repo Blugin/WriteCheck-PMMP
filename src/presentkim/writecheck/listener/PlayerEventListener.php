@@ -22,7 +22,11 @@ class PlayerEventListener implements Listener{
         $this->owner = Plugin::getInstance();
     }
 
-    /** @param PlayerInteractEvent $event */
+    /**
+     * @priority LOWEST
+     *
+     * @param PlayerInteractEvent $event
+     */
     public function onPlayerInteractEvent(PlayerInteractEvent $event) : void{
         if ($event->getAction() === PlayerInteractEvent::LEFT_CLICK_BLOCK || $event->getAction() === PlayerInteractEvent::RIGHT_CLICK_AIR) {
             $player = $event->getPlayer();

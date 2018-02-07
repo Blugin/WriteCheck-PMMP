@@ -32,4 +32,6 @@ command-wcheck-reload: "reload"
 command-wcheck-reload@usage: "/wcheck Reload"
 command-wcheck-reload@success: "모든 데이터를 불러왔습니다"
 command-wcheck-reload@aliases: ["rl"]
+
+economy-failure: "EconomyAPI Failure. 코드 : {%0}"
 ...

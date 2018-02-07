@@ -39,12 +39,15 @@ class PlayerEventListener implements Listener{
                         $player->sendMessage(Plugin::$prefix . Translation::translate('check-help', $amount));
                     }
                 } else {
-                    --$item->count;
-                    $inventory->setItemInHand($item);
                     $economyApi = EconomyAPI::getInstance();
-                    $economyApi->addMoney($player, $amount);
-
-                    $player->sendMessage(Plugin::$prefix . Translation::translate('check-use', $amount, $economyApi->myMoney($player)));
+                    $return = $economyApi->addMoney($player, $amount, false, $this->owner->getName());
+                    if ($return === EconomyAPI::RET_SUCCESS) {
+                        --$item->count;
+                        $inventory->setItemInHand($item);
+                        $player->sendMessage(Plugin::$prefix . Translation::translate('check-use', $amount, $economyApi->myMoney($player)));
+                    } else {
+                        $player->sendMessage(Plugin::$prefix . Translation::translate('economy-failure', $return));
+                    }
                 }
                 $event->setCancelled(true);
             }

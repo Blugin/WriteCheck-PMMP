@@ -16,7 +16,7 @@ use presentkim\writecheck\util\{
 
 class WriteCheck extends PluginBase{
 
-    /** @var self */
+    /** @var WriteCheck */
     private static $instance = null;
 
     /** @var string */
@@ -25,8 +25,8 @@ class WriteCheck extends PluginBase{
     /** @var PoolCommand */
     private $command = null;
 
-    /** @return self */
-    public static function getInstance() : self{
+    /** @return WriteCheck */
+    public static function getInstance() : WriteCheck{
         return self::$instance;
     }
 

@@ -1,8 +1,0 @@
---- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/PMMPPlugin/WriteCheck
-branches:
-- poggit
-projects:
-  WriteCheck:
-    path: ""
-    icon: asstes/icon/192x192.png
-...

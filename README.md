@@ -3,7 +3,6 @@
 [![icon/192x192](asstes/icon/192x192.png?raw=true)]()
 
 [![License](https://img.shields.io/github/license/PMMPPlugin/WriteCheck.svg?label=License)](LICENSE)
-[![Poggit](https://poggit.pmmp.io/ci.shield/PMMPPlugin/WriteCheck/WriteCheck)](https://poggit.pmmp.io/ci/PMMPPlugin/WriteCheck)
 [![Release](https://img.shields.io/github/release/PMMPPlugin/WriteCheck.svg?label=Release)](https://github.com/PMMPPlugin/WriteCheck/releases/latest)
 [![Download](https://img.shields.io/github/downloads/PMMPPlugin/WriteCheck/total.svg?label=Download)](https://github.com/PMMPPlugin/WriteCheck/releases/latest)
 

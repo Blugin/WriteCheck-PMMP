@@ -1,6 +1,6 @@
 <?php
 
-namespace presentkim\writecheck\util;
+namespace kim\present\writecheck\util;
 
 class Utils{
 

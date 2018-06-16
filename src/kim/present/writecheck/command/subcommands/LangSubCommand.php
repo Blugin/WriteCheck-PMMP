@@ -1,13 +1,13 @@
 <?php
 
-namespace presentkim\writecheck\command\subcommands;
+namespace kim\present\writecheck\command\subcommands;
 
 use pocketmine\command\CommandSender;
-use presentkim\writecheck\WriteCheck as Plugin;
-use presentkim\writecheck\command\{
+use kim\present\writecheck\WriteCheck as Plugin;
+use kim\present\writecheck\command\{
   PoolCommand, SubCommand
 };
-use presentkim\writecheck\util\Translation;
+use kim\present\writecheck\util\Translation;
 
 class LangSubCommand extends SubCommand{
 

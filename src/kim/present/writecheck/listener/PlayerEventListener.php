@@ -1,12 +1,12 @@
 <?php
 
-namespace presentkim\writecheck\listener;
+namespace kim\present\writecheck\listener;
 
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
 use onebone\economyapi\EconomyAPI;
-use presentkim\writecheck\WriteCheck as Plugin;
-use presentkim\writecheck\util\Translation;
+use kim\present\writecheck\WriteCheck as Plugin;
+use kim\present\writecheck\util\Translation;
 
 class PlayerEventListener implements Listener{
 

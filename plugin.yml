@@ -4,7 +4,7 @@ main:                   kim\present\writecheck\WriteCheck
 version:                1.1.3
 api:                    [3.0.0, 3.0.0-ALPHA10, 3.0.0-ALPHA11, 3.0.0-ALPHA12]
 author:                 PresentKim
-website:                https://github.com/PMMPPlugin/WriteCheck
+website:                https://github.com/PresentKim/WriteCheck
 
 depend:                 [EconomyAPI]
 

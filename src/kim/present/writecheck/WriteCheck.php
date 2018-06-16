@@ -1,16 +1,16 @@
 <?php
 
-namespace presentkim\writecheck;
+namespace kim\present\writecheck;
 
 use pocketmine\item\Item;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\plugin\PluginBase;
-use presentkim\writecheck\command\PoolCommand;
-use presentkim\writecheck\command\subcommands\{
+use kim\present\writecheck\command\PoolCommand;
+use kim\present\writecheck\command\subcommands\{
   WriteSubCommand, LangSubCommand, ReloadSubCommand
 };
-use presentkim\writecheck\listener\PlayerEventListener;
-use presentkim\writecheck\util\{
+use kim\present\writecheck\listener\PlayerEventListener;
+use kim\present\writecheck\util\{
   Translation, Utils
 };
 

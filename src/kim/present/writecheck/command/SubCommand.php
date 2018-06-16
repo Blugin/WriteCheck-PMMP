@@ -1,11 +1,11 @@
 <?php
 
-namespace presentkim\writecheck\command;
+namespace kim\present\writecheck\command;
 
 use pocketmine\Server;
 use pocketmine\command\CommandSender;
-use presentkim\writecheck\WriteCheck as Plugin;
-use presentkim\writecheck\util\{
+use kim\present\writecheck\WriteCheck as Plugin;
+use kim\present\writecheck\util\{
   Translation, Utils
 };
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace presentkim\writecheck\util;
+namespace kim\present\writecheck\util;
 
-use presentkim\writecheck\WriteCheck as Plugin;
+use kim\present\writecheck\WriteCheck as Plugin;
 
 class Translation{
 

@@ -7,24 +7,12 @@ check-help: "{%0}원 수표입니다. 길게 누르거나 우클릭하여 사용
 
 command-generic-failure@in-game: "게임 내에서만 사용할 수 있습니다"
 command-generic-failure@permission: "이 명령을 사용할 수 있는 권한이 없습니다"
+command-generic-failure-economy-failure: "EconomyAPI 실패. 코드 : {%0}"
 
 command-wcheck: "wcheck"
-command-wcheck@usage: "/wcheck <{%0}>"
-command-wcheck@usage-separator: " | "
+command-wcheck@usage: "/wcheck <금액> [갯수]"
 command-wcheck@description: "WriteCheck의 메인 커맨드"
 command-wcheck@aliases: ["wc"]
-
-command-wcheck-write: "write"
-command-wcheck-write@usage: "/wcheck Write <금액> [갯수]"
-command-wcheck-write@success: "${%2}원을 사용하여 {%0}원 수표 {%1}장을 만들었습니다. 소유금 : {%3}원"
-command-wcheck-write@failure: "돈이 부족합니다. 소유금 : {%0}원"
-command-wcheck-write@aliases: ["w"]
-
-command-wcheck-lang: "lang"
-command-wcheck-lang@usage: "/wcheck Lang <언어명>"
-command-wcheck-lang@success: "{%0}언어 파일을 불러왔습니다"
-command-wcheck-lang@failure: "{%0}는 잘못된 언어명입니다"
-command-wcheck-lang@aliases: ["language"]
-
-economy-failure: "EconomyAPI Failure. 코드 : {%0}"
+command-wcheck@success: "${%2}원을 사용하여 {%0}원 수표 {%1}장을 만들었습니다. 소유금 : {%3}원"
+command-wcheck@failure: "돈이 부족합니다. 소유금 : {%0}원"
 ...

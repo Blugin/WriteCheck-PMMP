@@ -7,18 +7,12 @@ check-use: "Use the ${%0} check. You have : ${%1}"
 
 command-generic-failure@in-game: "Available in game only"
 command-generic-failure@permission: "You do not have permission to use this command"
+command-generic-failure-economy-failure: "EconomyAPI Failure. Code : {%0}"
 
 command-wcheck: "wcheck"
-command-wcheck@usage: "/wcheck <{%0}>"
-command-wcheck@usage-separator: " | "
+command-wcheck@usage: "/wcheck <amount> [count]"
 command-wcheck@description: "Main command of WriteCheck"
 command-wcheck@aliases: ["wc"]
-
-command-wcheck-write: "write"
-command-wcheck-write@usage: "/wcheck Write <amount> [count]"
-command-wcheck-write@success: "You wrote {%1} checks for ${%0} using ${%2}. You have : ${%3}"
-command-wcheck-write@failure: "You don't have enough money. You have : ${%0}"
-command-wcheck-write@aliases: ["w"]
-
-economy-failure: "EconomyAPI Failure. Code : {%0}"
+command-wcheck@success: "You wrote {%1} checks for ${%0} using ${%2}. You have : ${%3}"
+command-wcheck@failure: "You don't have enough money. You have : ${%0}"
 ...

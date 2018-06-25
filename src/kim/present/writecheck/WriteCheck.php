@@ -28,6 +28,7 @@ namespace kim\present\writecheck;
 
 use kim\present\writecheck\lang\PluginLang;
 use kim\present\writecheck\listener\PlayerEventListener;
+use kim\present\writecheck\task\CheckUpdateAsyncTask;
 use kim\present\writecheck\util\CheckManager;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\command\{
@@ -62,6 +63,9 @@ class WriteCheck extends PluginBase{
 
 	public function onLoad() : void{
 		self::$instance = $this;
+
+		//Check latest version
+		$this->getServer()->getAsyncPool()->submitTask(new CheckUpdateAsyncTask());
 	}
 
 	public function onEnable() : void{

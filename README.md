@@ -19,8 +19,8 @@ Hold the check and press the air to use the check.
     - item id : `PAPER:0xff`  
     - nbt tag : `whitecheck-amount`  
 - [x] Support configurable things  
-- [ ] Check that the plugin is not latest version  
-  - [ ] If not latest version, show latest release download url  
+- [x] Check that the plugin is not latest version  
+  - [x] If not latest version, show latest release download url  
   
   
 ## Command  

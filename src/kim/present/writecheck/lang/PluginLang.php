@@ -13,6 +13,26 @@ class PluginLang extends BaseLang{
 	 */
 	private $plugin;
 
+
+	/**
+	 * @Override for support the array at lang file
+	 *
+	 * @param string $path
+	 * @param array  $d
+	 *
+	 * @return bool
+	 */
+	protected static function loadLang(string $path, array &$d) : bool{
+		if(file_exists($path)){
+			$d = array_map(function($entry){
+				return is_string($entry) ? stripcslashes($entry) : $entry;
+			}, parse_ini_file($path, false, INI_SCANNER_RAW));
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	/**
 	 * @noinspection PhpMissingParentConstructorInspection
 	 * PluginLang constructor.

@@ -1,6 +1,4 @@
 ---
-prefix: "[WriteCheck] "
-
 check-name: "{%0}원 수표"
 check-lore:
   - "길게 누르거나 우클릭하여 {%0}원을 획득하세요"

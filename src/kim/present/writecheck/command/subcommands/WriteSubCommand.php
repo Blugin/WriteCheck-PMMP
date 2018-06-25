@@ -8,7 +8,6 @@ use kim\present\writecheck\command\{
 	PoolCommand, SubCommand
 };
 use kim\present\writecheck\util\Translation;
-use kim\present\writecheck\WriteCheck as Plugin;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\command\CommandSender;
 use pocketmine\Player;
@@ -33,19 +32,19 @@ class WriteSubCommand extends SubCommand{
 				$economyApi = EconomyAPI::getInstance();
 				$price = $amount * $count;
 				if(($money = $economyApi->myMoney($sender)) < $price){
-					$sender->sendMessage(Plugin::$prefix . $this->translate('failure', $money));
+					$sender->sendMessage($this->translate('failure', $money));
 				}else{
 					$return = $economyApi->reduceMoney($sender, $price, false, $this->plugin->getName());
 					if($return === EconomyAPI::RET_SUCCESS){
 						$sender->getInventory()->addItem($this->plugin->getCheck($amount, $count));
 
-						$sender->sendMessage(Plugin::$prefix . $this->translate('success', $amount, $count, $price, $money - $price));
+						$sender->sendMessage($this->translate('success', $amount, $count, $price, $money - $price));
 					}else{
-						$sender->sendMessage(Plugin::$prefix . Translation::translate('economy-failure', $return));
+						$sender->sendMessage(Translation::translate('economy-failure', $return));
 					}
 				}
 			}else{
-				$sender->sendMessage(Plugin::$prefix . Translation::translate('command-generic-failure@in-game'));
+				$sender->sendMessage(Translation::translate('command-generic-failure@in-game'));
 			}
 			return true;
 		}else{

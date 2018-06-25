@@ -41,7 +41,7 @@ class PlayerEventListener implements Listener{
 					if(!isset($this->touched[$playerName = $player->getLowerCaseName()]) || $this->touched[$playerName] < time()){
 						$this->touched[$playerName] = time() + 3;
 
-						$player->sendMessage(Plugin::$prefix . Translation::translate('check-help', $amount));
+						$player->sendMessage(Translation::translate('check-help', $amount));
 					}
 				}else{
 					$economyApi = EconomyAPI::getInstance();
@@ -49,9 +49,9 @@ class PlayerEventListener implements Listener{
 					if($return === EconomyAPI::RET_SUCCESS){
 						--$item->count;
 						$inventory->setItemInHand($item);
-						$player->sendMessage(Plugin::$prefix . Translation::translate('check-use', $amount, $economyApi->myMoney($player)));
+						$player->sendMessage(Translation::translate('check-use', $amount, $economyApi->myMoney($player)));
 					}else{
-						$player->sendMessage(Plugin::$prefix . Translation::translate('economy-failure', $return));
+						$player->sendMessage(Translation::translate('economy-failure', $return));
 					}
 				}
 				$event->setCancelled(true);

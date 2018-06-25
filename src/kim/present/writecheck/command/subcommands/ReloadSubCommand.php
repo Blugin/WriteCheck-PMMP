@@ -7,7 +7,6 @@ namespace kim\present\writecheck\command\subcommands;
 use kim\present\writecheck\command\{
 	PoolCommand, SubCommand
 };
-use kim\present\writecheck\WriteCheck as Plugin;
 use pocketmine\command\CommandSender;
 
 class ReloadSubCommand extends SubCommand{
@@ -23,7 +22,7 @@ class ReloadSubCommand extends SubCommand{
 	 */
 	public function onCommand(CommandSender $sender, array $args) : bool{
 		$this->plugin->load();
-		$sender->sendMessage(Plugin::$prefix . $this->translate('success'));
+		$sender->sendMessage($this->translate('success'));
 
 		return true;
 	}

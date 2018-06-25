@@ -23,11 +23,6 @@ class WriteCheck extends PluginBase{
 	private static $instance = null;
 
 	/**
-	 * @var string
-	 */
-	public static $prefix = '';
-
-	/**
 	 * @var PoolCommand
 	 */
 	private $command = null;
@@ -66,8 +61,6 @@ class WriteCheck extends PluginBase{
 		}else{
 			Translation::load($langFile);
 		}
-
-		self::$prefix = Translation::translate('prefix');
 		$this->reloadCommand();
 	}
 

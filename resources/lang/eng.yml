@@ -1,6 +1,4 @@
 ---
-prefix: "[WriteCheck] "
-
 check-name: "${%0} check"
 check-lore:
   - "Long touch or right click to use to get ${%0}"

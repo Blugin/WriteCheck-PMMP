@@ -26,6 +26,7 @@ declare(strict_types=1);
 
 namespace kim\present\writecheck\listener;
 
+use kim\present\writecheck\util\CheckManager;
 use kim\present\writecheck\WriteCheck;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\event\Listener;
@@ -56,7 +57,7 @@ class PlayerEventListener implements Listener{
 			$player = $event->getPlayer();
 			$inventory = $player->getInventory();
 			$item = $inventory->getItemInHand();
-			$amount = $this->owner->getAmount($item);
+			$amount = CheckManager::getCheckAmount($item);
 			if($amount !== null){
 				if($event->getAction() === PlayerInteractEvent::LEFT_CLICK_BLOCK){
 					if(!isset($this->touched[$playerName = $player->getLowerCaseName()]) || $this->touched[$playerName] < time()){

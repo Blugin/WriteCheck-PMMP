@@ -28,13 +28,11 @@ namespace kim\present\writecheck;
 
 use kim\present\writecheck\lang\PluginLang;
 use kim\present\writecheck\listener\PlayerEventListener;
-use kim\present\writecheck\util\Utils;
+use kim\present\writecheck\util\CheckManager;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\command\{
 	Command, CommandSender, PluginCommand
 };
-use pocketmine\item\Item;
-use pocketmine\nbt\tag\IntTag;
 use pocketmine\permission\Permission;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
@@ -123,7 +121,7 @@ class WriteCheck extends PluginBase{
 				}else{
 					$return = $economyApi->reduceMoney($sender, $price, false, $this->getName());
 					if($return === EconomyAPI::RET_SUCCESS){
-						$sender->getInventory()->addItem($this->getCheck($amount, $count));
+						$sender->getInventory()->addItem(CheckManager::makeCheck($amount, $count));
 						$sender->sendMessage($this->getLanguage()->translateString("commands.wcheck.success", [(string) $amount, (string) $count, (string) $price, (string) ($money - $price)]));
 					}else{
 						$sender->sendMessage($this->getLanguage()->translateString("economyFailure", [(string) $return]));
@@ -163,47 +161,5 @@ class WriteCheck extends PluginBase{
 	 */
 	public function getLanguage() : PluginLang{
 		return $this->language;
-	}
-
-	/**
-	 * @param int $amount
-	 * @param int $count
-	 *
-	 * @return Item
-	 */
-	public function getCheck(int $amount, int $count = 1) : Item{
-		$paper = Item::get(Item::PAPER, 0xff, $count);
-		$paper->setNamedTagEntry(new IntTag(self::CHECK_AMOUNT_TAG, $amount));
-		$paper->setCustomName($this->getLanguage()->translateString('check-name', [(string) $amount]));
-		$lore = [];
-		foreach($paper->setLore($this->getLanguage()->getArray("check.lore")) as $key => $line){
-			$lore[] = strtr($line, Utils::listToPairs([$amount]));
-		}
-		$paper->setLore($lore);
-		return $paper;
-	}
-
-	/**
-	 * @param Item $item
-	 *
-	 * @return int|null
-	 */
-	public function getAmount(Item $item) : ?int{
-		if($item->getId() == Item::PAPER && $item->getDamage() === 0xff){
-			$amount = $item->getNamedTag()->getTagValue(self::CHECK_AMOUNT_TAG, IntTag::class, -1);
-			if($amount !== -1){
-				return $amount;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * @param Item $item
-	 *
-	 * @return bool
-	 */
-	public function isCheck(Item $item) : bool{
-		return $this->getAmount($item) !== null;
 	}
 }

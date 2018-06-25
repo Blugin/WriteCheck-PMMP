@@ -76,7 +76,7 @@ class WriteCheck extends PluginBase{
 	public function getCheck(int $amount, int $count = 1) : Item{
 		$paper = Item::get(Item::PAPER, 0xff, $count);
 		$paper->setNamedTagEntry(new IntTag('whitecheck-amount', $amount));
-		$paper->setCustomName(Translation::translate('check-name', $amount));
+		$paper->setCustomName(Translation::translate('check-name', (string) $amount));
 		$lore = [];
 		foreach(Translation::getArray('check-lore') as $key => $line){
 			$lore[] = strtr($line, Utils::listToPairs([$amount]));

@@ -26,10 +26,5 @@ command-wcheck-lang@success: "{%0}언어 파일을 불러왔습니다"
 command-wcheck-lang@failure: "{%0}는 잘못된 언어명입니다"
 command-wcheck-lang@aliases: ["language"]
 
-command-wcheck-reload: "reload"
-command-wcheck-reload@usage: "/wcheck Reload"
-command-wcheck-reload@success: "모든 데이터를 불러왔습니다"
-command-wcheck-reload@aliases: ["rl"]
-
 economy-failure: "EconomyAPI Failure. 코드 : {%0}"
 ...

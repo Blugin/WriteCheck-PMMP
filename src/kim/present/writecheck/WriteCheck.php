@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace kim\present\writecheck;
 
 use kim\present\writecheck\command\PoolCommand;
-use kim\present\writecheck\command\subcommands\{
-	LangSubCommand, ReloadSubCommand, WriteSubCommand
-};
+use kim\present\writecheck\command\subcommands\WriteSubCommand;
 use kim\present\writecheck\listener\PlayerEventListener;
 use kim\present\writecheck\util\{
 	Translation, Utils
@@ -68,8 +66,6 @@ class WriteCheck extends PluginBase{
 		if($this->command == null){
 			$this->command = new PoolCommand($this, 'wcheck');
 			$this->command->createSubCommand(WriteSubCommand::class);
-			$this->command->createSubCommand(LangSubCommand::class);
-			$this->command->createSubCommand(ReloadSubCommand::class);
 		}
 		$this->command->updateTranslation();
 		$this->command->updateSudCommandTranslation();

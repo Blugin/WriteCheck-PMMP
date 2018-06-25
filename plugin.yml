@@ -16,10 +16,4 @@ permissions:
       wcheck.cmd.write:
         description: WriteCheck command - write
         default: true
-      wcheck.cmd.lang:
-        description: WriteCheck command - lang
-        default: op
-      wcheck.cmd.reload:
-        description: WriteCheck command - reload
-        default: op
 ...

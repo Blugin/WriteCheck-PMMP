@@ -20,16 +20,5 @@ command-wcheck-write@success: "You wrote {%1} checks for ${%0} using ${%2}. You 
 command-wcheck-write@failure: "You don't have enough money. You have : ${%0}"
 command-wcheck-write@aliases: ["w"]
 
-command-wcheck-lang: "lang"
-command-wcheck-lang@usage: "/wcheck Lang <language prefix>"
-command-wcheck-lang@success: "{%0} language file was loaded"
-command-wcheck-lang@failure: "{%0} is invalid language prefix"
-command-wcheck-lang@aliases: ["language"]
-
-command-wcheck-reload: "reload"
-command-wcheck-reload@usage: "/wcheck Reload"
-command-wcheck-reload@success: "All data was reloaded"
-command-wcheck-reload@aliases: ["rl"]
-
 economy-failure: "EconomyAPI Failure. Code : {%0}"
 ...

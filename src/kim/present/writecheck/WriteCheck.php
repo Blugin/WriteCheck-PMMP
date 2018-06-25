@@ -97,7 +97,7 @@ class WriteCheck extends PluginBase{
 		}
 
 		//Register event listeners
-		$this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
+		$this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener($this), $this);
 	}
 
 	/**

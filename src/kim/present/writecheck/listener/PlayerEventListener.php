@@ -26,14 +26,14 @@ declare(strict_types=1);
 
 namespace kim\present\writecheck\listener;
 
-use kim\present\writecheck\WriteCheck as Plugin;
+use kim\present\writecheck\WriteCheck;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
 
 class PlayerEventListener implements Listener{
 	/**
-	 * @var Plugin
+	 * @var WriteCheck
 	 */
 	private $owner = null;
 
@@ -42,8 +42,8 @@ class PlayerEventListener implements Listener{
 	 */
 	private $touched = [];
 
-	public function __construct(){
-		$this->owner = Plugin::getInstance();
+	public function __construct(WriteCheck $owner){
+		$this->owner = $owner;
 	}
 
 	/**

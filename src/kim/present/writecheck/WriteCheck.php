@@ -40,16 +40,11 @@ class WriteCheck extends PluginBase{
 	}
 
 	public function onEnable() : void{
-		$this->load();
-		$this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
-	}
-
-	public function load() : void{
-		$dataFolder = $this->getDataFolder();
-		if(!file_exists($dataFolder)){
+		if(!file_exists($dataFolder = $this->getDataFolder())){
 			mkdir($dataFolder, 0777, true);
 		}
 
+		//Load language file
 		$langFile = $dataFolder . 'lang.yml';
 		if(!file_exists($langFile)){
 			$resource = $this->getResource('lang/eng.yml');
@@ -59,20 +54,17 @@ class WriteCheck extends PluginBase{
 		}else{
 			Translation::load($langFile);
 		}
-		$this->reloadCommand();
-	}
 
-	public function reloadCommand() : void{
-		if($this->command == null){
-			$this->command = new PoolCommand($this, 'wcheck');
-			$this->command->createSubCommand(WriteSubCommand::class);
-		}
+		//Register main command
+		$this->command = new PoolCommand($this, 'wcheck');
+		$this->command->createSubCommand(WriteSubCommand::class);
 		$this->command->updateTranslation();
 		$this->command->updateSudCommandTranslation();
-		if($this->command->isRegistered()){
-			$this->getServer()->getCommandMap()->unregister($this->command);
-		}
+		$this->getServer()->getCommandMap()->unregister($this->command);
 		$this->getServer()->getCommandMap()->register(strtolower($this->getName()), $this->command);
+
+		//Register event listeners
+		$this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
 	}
 
 	/**

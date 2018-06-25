@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace kim\present\writecheck;
 
+use kim\present\writecheck\lang\PluginLang;
 use kim\present\writecheck\listener\PlayerEventListener;
 use kim\present\writecheck\util\{
 	Translation, Utils
@@ -104,6 +105,26 @@ class WriteCheck extends PluginBase{
 		}else{
 			return false;
 		}
+	}
+
+	/**
+	 * @Override for multilingual support of the config file
+	 *
+	 * @return bool
+	 */
+	public function saveDefaultConfig() : bool{
+		$resource = $this->getResource("lang/{$this->getServer()->getLanguage()->getLang()}/config.yml");
+		if($resource === null){
+			$resource = $this->getResource("lang/" . PluginLang::FALLBACK_LANGUAGE . "/config.yml");
+		}
+
+		if(!file_exists($configFile = $this->getDataFolder() . "config.yml")){
+			$ret = stream_copy_to_stream($resource, $fp = fopen($configFile, "wb")) > 0;
+			fclose($fp);
+			fclose($resource);
+			return $ret;
+		}
+		return false;
 	}
 
 	/**

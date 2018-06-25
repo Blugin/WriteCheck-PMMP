@@ -64,4 +64,23 @@ class PluginLang extends BaseLang{
 	public function isAvailableLanguage(string $lang) : bool{
 		return in_array(strtolower($lang), $this->getAvailableLanguageList());
 	}
+
+	/**
+	 * @param string $id
+	 *
+	 * @return string[]|null
+	 */
+	public function getArray(string $id) : ?array{
+		$result = null;
+		if(isset($this->lang[$id])){
+			$result = $this->lang[$id];
+		}elseif(isset($this->fallbackLang[$id])){
+			$result = $this->fallbackLang[$id];
+		}
+
+		if(!is_array($result)){
+			return null;
+		}
+		return $result;
+	}
 }

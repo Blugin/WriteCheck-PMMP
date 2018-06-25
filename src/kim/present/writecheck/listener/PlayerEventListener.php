@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace kim\present\writecheck\listener;
 
 use kim\present\writecheck\util\Translation;

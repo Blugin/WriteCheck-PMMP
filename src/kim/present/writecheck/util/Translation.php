@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace kim\present\writecheck\util;
 
 use kim\present\writecheck\WriteCheck as Plugin;

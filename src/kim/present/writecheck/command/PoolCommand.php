@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace kim\present\writecheck\command;
 
 use kim\present\writecheck\util\Translation;

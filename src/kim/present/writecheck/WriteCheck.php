@@ -40,6 +40,8 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 
 class WriteCheck extends PluginBase{
+	public const CHECK_AMOUNT_TAG = "whitecheck-amount";
+
 	/**
 	 * @var WriteCheck
 	 */
@@ -171,7 +173,7 @@ class WriteCheck extends PluginBase{
 	 */
 	public function getCheck(int $amount, int $count = 1) : Item{
 		$paper = Item::get(Item::PAPER, 0xff, $count);
-		$paper->setNamedTagEntry(new IntTag('whitecheck-amount', $amount));
+		$paper->setNamedTagEntry(new IntTag(self::CHECK_AMOUNT_TAG, $amount));
 		$paper->setCustomName($this->getLanguage()->translateString('check-name', [(string) $amount]));
 		$lore = [];
 		foreach($paper->setLore($this->getLanguage()->getArray("check.lore")) as $key => $line){
@@ -188,7 +190,7 @@ class WriteCheck extends PluginBase{
 	 */
 	public function getAmount(Item $item) : ?int{
 		if($item->getId() == Item::PAPER && $item->getDamage() === 0xff){
-			$amount = $item->getNamedTag()->getTagValue('whitecheck-amount', IntTag::class, -1);
+			$amount = $item->getNamedTag()->getTagValue(self::CHECK_AMOUNT_TAG, IntTag::class, -1);
 			if($amount !== -1){
 				return $amount;
 			}

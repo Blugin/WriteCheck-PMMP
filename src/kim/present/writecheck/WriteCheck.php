@@ -6,15 +6,14 @@ namespace kim\present\writecheck;
 
 use kim\present\writecheck\lang\PluginLang;
 use kim\present\writecheck\listener\PlayerEventListener;
-use kim\present\writecheck\util\{
-	Translation, Utils
-};
+use kim\present\writecheck\util\Utils;
 use onebone\economyapi\EconomyAPI;
-use pocketmine\command\Command;
-use pocketmine\command\CommandSender;
-use pocketmine\command\PluginCommand;
+use pocketmine\command\{
+	Command, CommandSender, PluginCommand
+};
 use pocketmine\item\Item;
 use pocketmine\nbt\tag\IntTag;
+use pocketmine\permission\Permission;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 
@@ -32,40 +31,48 @@ class WriteCheck extends PluginBase{
 	}
 
 	/**
+	 * @var PluginLang
+	 */
+	private $language;
+
+	/**
 	 * @var PluginCommand
 	 */
 	private $command;
 
 	public function onLoad() : void{
-		if(self::$instance === null){
-			self::$instance = $this;
-			Translation::loadFromResource($this->getResource('lang/eng.yml'), true);
-		}
+		self::$instance = $this;
 	}
 
 	public function onEnable() : void{
-		if(!file_exists($dataFolder = $this->getDataFolder())){
-			mkdir($dataFolder, 0777, true);
-		}
+		//Save default resources
+		$this->saveResource("lang/eng/lang.ini", false);
+		$this->saveResource("lang/kor/lang.ini", false);
+		$this->saveResource("lang/language.list", false);
+
+		//Load config file
+		$this->saveDefaultConfig();
+		$this->reloadConfig();
 
 		//Load language file
-		$langFile = $dataFolder . 'lang.yml';
-		if(!file_exists($langFile)){
-			$resource = $this->getResource('lang/eng.yml');
-			fwrite($fp = fopen("{$dataFolder}lang.yml", "wb"), $contents = stream_get_contents($resource));
-			fclose($fp);
-			Translation::loadFromContents($contents);
-		}else{
-			Translation::load($langFile);
-		}
+		$config = $this->getConfig();
+		$this->language = new PluginLang($this, $config->getNested("settings.language"));
+		$this->getLogger()->info($this->language->translateString("language.selected", [$this->language->getName(), $this->language->getLang()]));
 
 		//Register main command
-		$this->command = new PluginCommand(Translation::translate("command-wcheck"), $this);
+		$this->command = new PluginCommand($config->getNested("command.name"), $this);
 		$this->command->setPermission("wcheck.cmd");
-		$this->command->setAliases(Translation::getArray("command-wcheck@aliases"));
-		$this->command->setUsage(Translation::translate("command-wcheck@usage"));
-		$this->command->setDescription(Translation::translate("command-wcheck@description"));
+		$this->command->setAliases($config->getNested("command.aliases"));
+		$this->command->setUsage($this->language->translateString("commands.wcheck.usage"));
+		$this->command->setDescription($this->language->translateString("commands.wcheck.description"));
 		$this->getServer()->getCommandMap()->register($this->getName(), $this->command);
+
+		//Load permission's default value from config
+		$permissions = $this->getServer()->getPluginManager()->getPermissions();
+		$defaultValue = $config->getNested("permission.main");
+		if($defaultValue !== null){
+			$permissions["wcheck.cmd"]->setDefault(Permission::getByName($config->getNested("permission.main")));
+		}
 
 		//Register event listeners
 		$this->getServer()->getPluginManager()->registerEvents(new PlayerEventListener(), $this);
@@ -88,18 +95,18 @@ class WriteCheck extends PluginBase{
 				$economyApi = EconomyAPI::getInstance();
 				$price = $amount * $count;
 				if(($money = $economyApi->myMoney($sender)) < $price){
-					$sender->sendMessage(Translation::translate("command-wcheck@failure", (string) $money));
+					$sender->sendMessage($this->getLanguage()->translateString("commands.wcheck.failure", [(string) $money]));
 				}else{
 					$return = $economyApi->reduceMoney($sender, $price, false, $this->getName());
 					if($return === EconomyAPI::RET_SUCCESS){
 						$sender->getInventory()->addItem($this->getCheck($amount, $count));
-						$sender->sendMessage(Translation::translate("command-wcheck@success", (string) $amount, (string) $count, (string) $price, (string) ($money - $price)));
+						$sender->sendMessage($this->getLanguage()->translateString("commands.wcheck.success", [(string) $amount, (string) $count, (string) $price, (string) ($money - $price)]));
 					}else{
-						$sender->sendMessage(Translation::translate("command-generic-failure@economy-failure", (string) $return));
+						$sender->sendMessage($this->getLanguage()->translateString("economyFailure", [(string) $return]));
 					}
 				}
 			}else{
-				$sender->sendMessage(Translation::translate('command-generic-failure@in-game'));
+				$sender->sendMessage($this->getLanguage()->translateString("commands.generic.onlyPlayer"));
 			}
 			return true;
 		}else{
@@ -128,6 +135,13 @@ class WriteCheck extends PluginBase{
 	}
 
 	/**
+	 * @return PluginLang
+	 */
+	public function getLanguage() : PluginLang{
+		return $this->language;
+	}
+
+	/**
 	 * @param int $amount
 	 * @param int $count
 	 *
@@ -136,9 +150,9 @@ class WriteCheck extends PluginBase{
 	public function getCheck(int $amount, int $count = 1) : Item{
 		$paper = Item::get(Item::PAPER, 0xff, $count);
 		$paper->setNamedTagEntry(new IntTag('whitecheck-amount', $amount));
-		$paper->setCustomName(Translation::translate('check-name', (string) $amount));
+		$paper->setCustomName($this->getLanguage()->translateString('check-name', [(string) $amount]));
 		$lore = [];
-		foreach(Translation::getArray('check-lore') as $key => $line){
+		foreach($paper->setLore($this->getLanguage()->getArray("check.lore")) as $key => $line){
 			$lore[] = strtr($line, Utils::listToPairs([$amount]));
 		}
 		$paper->setLore($lore);

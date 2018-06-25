@@ -38,8 +38,6 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 
 class WriteCheck extends PluginBase{
-	public const CHECK_AMOUNT_TAG = "whitecheck-amount";
-
 	/**
 	 * @var WriteCheck
 	 */

@@ -31,6 +31,8 @@ use pocketmine\item\Item;
 use pocketmine\nbt\tag\IntTag;
 
 class CheckManager{
+	public const CHECK_AMOUNT_TAG = "whitecheck-amount";
+
 	/**
 	 * @param int $amount
 	 * @param int $count
@@ -39,7 +41,7 @@ class CheckManager{
 	 */
 	public static function makeCheck(int $amount, int $count = 1) : Item{
 		$paper = Item::get(Item::PAPER, 0xff, $count);
-		$paper->setNamedTagEntry(new IntTag(WriteCheck::CHECK_AMOUNT_TAG, $amount));
+		$paper->setNamedTagEntry(new IntTag(self::CHECK_AMOUNT_TAG, $amount));
 		$language = WriteCheck::getInstance()->getLanguage();
 		$paper->setCustomName($language->translateString('check-name', [(string) $amount]));
 		$lore = [];
@@ -58,7 +60,7 @@ class CheckManager{
 	 */
 	public static function getCheckAmount(Item $item) : ?int{
 		if($item->getId() == Item::PAPER && $item->getDamage() === 0xff){
-			$amount = $item->getNamedTag()->getTagValue(WriteCheck::CHECK_AMOUNT_TAG, IntTag::class, -1);
+			$amount = $item->getNamedTag()->getTagValue(self::CHECK_AMOUNT_TAG, IntTag::class, -1);
 			if($amount !== -1){
 				return $amount;
 			}

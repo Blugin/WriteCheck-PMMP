@@ -31,12 +31,6 @@ use pocketmine\lang\BaseLang;
 
 class PluginLang extends BaseLang{
 	/**
-	 * @var WriteCheck
-	 */
-	private $plugin;
-
-
-	/**
 	 * @Override for support the array at lang file
 	 *
 	 * @param string $path
@@ -54,6 +48,11 @@ class PluginLang extends BaseLang{
 			return false;
 		}
 	}
+
+	/**
+	 * @var WriteCheck
+	 */
+	private $plugin;
 
 	/**
 	 * @noinspection PhpMissingParentConstructorInspection

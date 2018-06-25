@@ -6,7 +6,9 @@ namespace kim\present\writecheck\util;
 
 class Utils{
 	/**
-	 * @param Object[] $list
+	 * Generate the associative array for use strstr() method
+	 *
+	 * @param string[] $list
 	 *
 	 * @return string[]
 	 */

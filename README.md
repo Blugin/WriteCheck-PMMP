@@ -23,6 +23,19 @@ Hold the check and press the air to use the check.
   - [x] If not latest version, show latest release download url  
   
   
+## Configurable things  
+- [x] Configure the language for messages  
+  - [x] in `{SELECTED LANG}/lang.ini` file  
+  - [x] Select language in `config.yml` file  
+- [x] Configure the command (include subcommands)  
+  - [x] in `config.yml` file  
+- [x] Configure the permission of command  
+  - [x] in `config.yml` file  
+  
+The configuration files is created when the plugin is enabled.  
+The configuration files is loaded  when the plugin is enabled.  
+  
+  
 ## Command  
 Main command : `/writecheck <amount> [count]`  
   

@@ -39,9 +39,7 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 
 class WriteCheck extends PluginBase{
-	/**
-	 * @var WriteCheck
-	 */
+	/** @var WriteCheck */
 	private static $instance = null;
 
 	/**
@@ -51,14 +49,10 @@ class WriteCheck extends PluginBase{
 		return self::$instance;
 	}
 
-	/**
-	 * @var PluginLang
-	 */
+	/** @var PluginLang */
 	private $language;
 
-	/**
-	 * @var PluginCommand
-	 */
+	/** @var PluginCommand */
 	private $command;
 
 	public function onLoad() : void{

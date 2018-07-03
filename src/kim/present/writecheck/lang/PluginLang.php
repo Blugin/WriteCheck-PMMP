@@ -49,9 +49,7 @@ class PluginLang extends BaseLang{
 		}
 	}
 
-	/**
-	 * @var WriteCheck
-	 */
+	/** @var WriteCheck */
 	private $plugin;
 
 	/**

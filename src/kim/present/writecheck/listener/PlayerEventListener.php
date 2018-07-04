@@ -33,14 +33,10 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
 
 class PlayerEventListener implements Listener{
-	/**
-	 * @var WriteCheck
-	 */
+	/** @var WriteCheck */
 	private $owner = null;
 
-	/**
-	 * @var int[]
-	 */
+	/** @var int[] */
 	private $touched = [];
 
 	public function __construct(WriteCheck $owner){

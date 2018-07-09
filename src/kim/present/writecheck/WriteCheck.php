@@ -58,7 +58,7 @@ class WriteCheck extends PluginBase{
 	/**
 	 * Called when the plugin is loaded, before calling onEnable()
 	 */
-	protected function onLoad() : void{
+	public function onLoad() : void{
 		self::$instance = $this;
 
 		//Check latest version
@@ -68,7 +68,7 @@ class WriteCheck extends PluginBase{
 	/**
 	 * Called when the plugin is enabled
 	 */
-	protected function onEnable() : void{
+	public function onEnable() : void{
 		//Save default resources
 		$this->saveResource("lang/eng/lang.ini", false);
 		$this->saveResource("lang/kor/lang.ini", false);

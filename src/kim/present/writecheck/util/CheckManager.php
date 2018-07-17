@@ -43,7 +43,7 @@ class CheckManager{
 		$paper = Item::get(Item::PAPER, 0xff, $count);
 		$paper->setNamedTagEntry(new IntTag(self::CHECK_AMOUNT_TAG, $amount));
 		$language = WriteCheck::getInstance()->getLanguage();
-		$paper->setCustomName($language->translateString('check-name', [(string) $amount]));
+		$paper->setCustomName($language->translateString("check-name", [(string) $amount]));
 		$lore = [];
 		foreach($language->getArray("check.lore") as $key => $line){
 			var_dump($key, $line);

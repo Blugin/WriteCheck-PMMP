@@ -59,7 +59,7 @@ class CheckManager{
 	 * @return int|null
 	 */
 	public static function getCheckAmount(Item $item) : ?int{
-		if($item->getId() == Item::PAPER && $item->getDamage() === 0xff){
+		if($item->getId() === Item::PAPER && $item->getDamage() === 0xff){
 			$amount = $item->getNamedTag()->getTagValue(self::CHECK_AMOUNT_TAG, IntTag::class, -1);
 			if($amount !== -1){
 				return $amount;

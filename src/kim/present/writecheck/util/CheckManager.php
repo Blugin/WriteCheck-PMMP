@@ -46,7 +46,6 @@ class CheckManager{
 		$paper->setCustomName($language->translateString("check-name", [(string) $amount]));
 		$lore = [];
 		foreach($language->getArray("check.lore") as $key => $line){
-			var_dump($key, $line);
 			$lore[] = strtr($line, Utils::listToPairs([(string) $amount]));
 		}
 		$paper->setLore($lore);

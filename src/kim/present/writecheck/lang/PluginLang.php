@@ -26,8 +26,8 @@ declare(strict_types=1);
 
 namespace kim\present\writecheck\lang;
 
-use kim\present\writecheck\WriteCheck;
 use pocketmine\lang\BaseLang;
+use pocketmine\plugin\PluginBase;
 
 class PluginLang extends BaseLang{
 	/**
@@ -49,17 +49,17 @@ class PluginLang extends BaseLang{
 		}
 	}
 
-	/** @var WriteCheck */
+	/** @var PluginBase */
 	private $plugin;
 
 	/**
 	 * @noinspection PhpMissingParentConstructorInspection
 	 * PluginLang constructor.
 	 *
-	 * @param WriteCheck $plugin
+	 * @param PluginBase $plugin
 	 * @param string     $lang
 	 */
-	public function __construct(WriteCheck $plugin, string $lang){
+	public function __construct(PluginBase $plugin, string $lang){
 		$this->langName = strtolower($lang);
 		$this->plugin = $plugin;
 

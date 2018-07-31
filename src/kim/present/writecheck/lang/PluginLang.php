@@ -26,7 +26,9 @@ declare(strict_types=1);
 
 namespace kim\present\writecheck\lang;
 
-use pocketmine\lang\Language;
+use pocketmine\lang\{
+	Language, LanguageNotFoundException
+};
 use pocketmine\plugin\PluginBase;
 
 class PluginLang extends Language{
@@ -34,19 +36,18 @@ class PluginLang extends Language{
 	 * @Override for support the array at lang file
 	 *
 	 * @param string $path
-	 * @param array  $d
+	 * @param string $languageCode
 	 *
-	 * @return bool
+	 * @return array
 	 */
-	protected static function loadLang(string $path, array &$d) : bool{
-		if(file_exists($path)){
-			$d = array_map(function($entry){
+	protected static function loadLang(string $path, string $languageCode) : array{
+		$file = $path . $languageCode . ".ini";
+		if(file_exists($file)){
+			return array_map(function($entry){
 				return is_string($entry) ? stripcslashes($entry) : $entry;
-			}, parse_ini_file($path, false, INI_SCANNER_RAW));
-			return true;
-		}else{
-			return false;
+			}, parse_ini_file($file, false, INI_SCANNER_RAW));
 		}
+		throw new LanguageNotFoundException("Language \"$languageCode\" not found");
 	}
 
 	/** @var PluginBase */
@@ -82,10 +83,10 @@ class PluginLang extends Language{
 	 */
 	public function load(string $lang) : bool{
 		if($this->isAvailableLanguage($lang)){
-			if(!self::loadLang($file = $this->plugin->getDataFolder() . "lang/" . $this->langName . "/lang.ini", $this->lang)){
-				$this->plugin->getLogger()->error("Missing required language file $file");
-			}else{
-				return true;
+			try{
+				$this->lang = self::loadLang($this->plugin->getDataFolder() . "lang/", "{$this->langName}/lang");
+			}catch(LanguageNotFoundException $e){
+				$this->plugin->getLogger()->error("Missing required language file ({$this->langName})");
 			}
 		}
 		return false;

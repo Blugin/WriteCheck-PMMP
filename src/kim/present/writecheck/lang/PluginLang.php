@@ -26,10 +26,10 @@ declare(strict_types=1);
 
 namespace kim\present\writecheck\lang;
 
-use pocketmine\lang\BaseLang;
+use pocketmine\lang\Language;
 use pocketmine\plugin\PluginBase;
 
-class PluginLang extends BaseLang{
+class PluginLang extends Language{
 	/**
 	 * @Override for support the array at lang file
 	 *

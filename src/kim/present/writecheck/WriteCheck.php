@@ -34,7 +34,9 @@ use onebone\economyapi\EconomyAPI;
 use pocketmine\command\{
 	Command, CommandSender, PluginCommand
 };
-use pocketmine\permission\Permission;
+use pocketmine\permission\{
+	Permission, PermissionManager
+};
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 
@@ -94,7 +96,7 @@ class WriteCheck extends PluginBase{
 		$this->getServer()->getCommandMap()->register($this->getName(), $this->command);
 
 		//Load permission's default value from config
-		$permissions = $this->getServer()->getPluginManager()->getPermissions();
+		$permissions = PermissionManager::getInstance()->getPermissions();
 		$defaultValue = $config->getNested("permission.main");
 		if($defaultValue !== null){
 			$permissions["wcheck.cmd"]->setDefault(Permission::getByName($config->getNested("permission.main")));

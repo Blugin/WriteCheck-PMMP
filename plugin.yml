@@ -2,7 +2,7 @@
 name: WriteCheck
 main: kim\present\writecheck\WriteCheck
 version: 1.3.3
-api: [3.0.0, 3.0.0-ALPHA10, 3.0.0-ALPHA11, 3.0.0-ALPHA12, 4.0.0]
+api: [4.0.0]
 author: PresentKim
 website: https://github.com/PresentKim/WriteCheck-PMMP
 description: Write a check for use it anywhere!

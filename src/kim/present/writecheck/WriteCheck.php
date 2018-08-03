@@ -85,14 +85,14 @@ class WriteCheck extends PluginBase{
 
 		//Load language file
 		$this->language = new PluginLang($this, $config->getNested("settings.language"));
-		$this->getLogger()->info($this->language->translateString("language.selected", [$this->language->getName(), $this->language->getLang()]));
+		$this->getLogger()->info($this->language->translate("language.selected", [$this->language->getName(), $this->language->getLang()]));
 
 		//Register main command
 		$this->command = new PluginCommand($config->getNested("command.name"), $this);
 		$this->command->setPermission("wcheck.cmd");
 		$this->command->setAliases($config->getNested("command.aliases"));
-		$this->command->setUsage($this->language->translateString("commands.wcheck.usage"));
-		$this->command->setDescription($this->language->translateString("commands.wcheck.description"));
+		$this->command->setUsage($this->language->translate("commands.wcheck.usage"));
+		$this->command->setDescription($this->language->translate("commands.wcheck.description"));
 		$this->getServer()->getCommandMap()->register($this->getName(), $this->command);
 
 		//Load permission's default value from config
@@ -123,18 +123,18 @@ class WriteCheck extends PluginBase{
 				$economyApi = EconomyAPI::getInstance();
 				$price = $amount * $count;
 				if(($money = $economyApi->myMoney($sender)) < $price){
-					$sender->sendMessage($this->getLanguage()->translateString("commands.wcheck.failure", [(string) $money]));
+					$sender->sendMessage($this->getLanguage()->translate("commands.wcheck.failure", [(string) $money]));
 				}else{
 					$return = $economyApi->reduceMoney($sender, $price, false, $this->getName());
 					if($return === EconomyAPI::RET_SUCCESS){
 						$sender->getInventory()->addItem(CheckManager::makeCheck($amount, $count));
-						$sender->sendMessage($this->getLanguage()->translateString("commands.wcheck.success", [(string) $amount, (string) $count, (string) $price, (string) ($money - $price)]));
+						$sender->sendMessage($this->getLanguage()->translate("commands.wcheck.success", [(string) $amount, (string) $count, (string) $price, (string) ($money - $price)]));
 					}else{
-						$sender->sendMessage($this->getLanguage()->translateString("economyFailure", [(string) $return]));
+						$sender->sendMessage($this->getLanguage()->translate("economyFailure", [(string) $return]));
 					}
 				}
 			}else{
-				$sender->sendMessage($this->getLanguage()->translateString("commands.generic.onlyPlayer"));
+				$sender->sendMessage($this->getLanguage()->translate("commands.generic.onlyPlayer"));
 			}
 			return true;
 		}else{

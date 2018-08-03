@@ -58,7 +58,7 @@ class PlayerEventListener implements Listener{
 				if($event->getAction() === PlayerInteractEvent::LEFT_CLICK_BLOCK){
 					if(!isset($this->touched[$playerName = $player->getLowerCaseName()]) || $this->touched[$playerName] < time()){
 						$this->touched[$playerName] = time() + 3;
-						$player->sendMessage($this->owner->getLanguage()->translateString("check.help", [(string) $amount]));
+						$player->sendMessage($this->owner->getLanguage()->translate("check.help", [(string) $amount]));
 					}
 				}else{
 					$economyApi = EconomyAPI::getInstance();
@@ -66,9 +66,9 @@ class PlayerEventListener implements Listener{
 					if($return === EconomyAPI::RET_SUCCESS){
 						--$item->count;
 						$inventory->setItemInHand($item);
-						$player->sendMessage($this->owner->getLanguage()->translateString("check.use", [(string) $amount, (string) $economyApi->myMoney($player)]));
+						$player->sendMessage($this->owner->getLanguage()->translate("check.use", [(string) $amount, (string) $economyApi->myMoney($player)]));
 					}else{
-						$player->sendMessage($this->owner->getLanguage()->translateString("economyFailure", [(string) $return]));
+						$player->sendMessage($this->owner->getLanguage()->translate("economyFailure", [(string) $return]));
 					}
 				}
 				$event->setCancelled(true);

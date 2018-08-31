@@ -34,13 +34,13 @@ use pocketmine\event\player\PlayerInteractEvent;
 
 class PlayerEventListener implements Listener{
 	/** @var WriteCheck */
-	private $owner = null;
+	private $plugin;
 
 	/** @var int[] */
 	private $touched = [];
 
-	public function __construct(WriteCheck $owner){
-		$this->owner = $owner;
+	public function __construct(WriteCheck $plugin){
+		$this->plugin = $plugin;
 	}
 
 	/**
@@ -58,17 +58,17 @@ class PlayerEventListener implements Listener{
 				if($event->getAction() === PlayerInteractEvent::LEFT_CLICK_BLOCK){
 					if(!isset($this->touched[$playerName = $player->getLowerCaseName()]) || $this->touched[$playerName] < time()){
 						$this->touched[$playerName] = time() + 3;
-						$player->sendMessage($this->owner->getLanguage()->translate("check.help", [(string) $amount]));
+						$player->sendMessage($this->plugin->getLanguage()->translate("check.help", [(string) $amount]));
 					}
 				}else{
 					$economyApi = EconomyAPI::getInstance();
-					$return = $economyApi->addMoney($player, $amount, false, $this->owner->getName());
+					$return = $economyApi->addMoney($player, $amount, false, $this->plugin->getName());
 					if($return === EconomyAPI::RET_SUCCESS){
 						--$item->count;
 						$inventory->setItemInHand($item);
-						$player->sendMessage($this->owner->getLanguage()->translate("check.use", [(string) $amount, (string) $economyApi->myMoney($player)]));
+						$player->sendMessage($this->plugin->getLanguage()->translate("check.use", [(string) $amount, (string) $economyApi->myMoney($player)]));
 					}else{
-						$player->sendMessage($this->owner->getLanguage()->translate("economyFailure", [(string) $return]));
+						$player->sendMessage($this->plugin->getLanguage()->translate("economyFailure", [(string) $return]));
 					}
 				}
 				$event->setCancelled(true);

@@ -1,4 +1,4 @@
-# <img src="./assets/icon/index.svg" height="50" width="50"> WriteCheck  
+# <img src="https://rawgit.com/PresentKim/SVG-files/master/plugin-icons/writecheck.svg" height="50" width="50"> WriteCheck  
 __A plugin for [PMMP](https://pmmp.io) :: Write a check for use it anywhere!__  
   
 [![license](https://img.shields.io/github/license/Blugin/WriteCheck-PMMP.svg?label=License)](./LICENSE)
